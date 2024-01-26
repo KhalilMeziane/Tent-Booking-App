@@ -3,7 +3,7 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 
 export default function UploadTents() {
     return (
-        <Container maxW="4xl" my="8">
+        <Container maxW="4xl" py="2">
             <Flex
                 h="96"
                 w="100%"

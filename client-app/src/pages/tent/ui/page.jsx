@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 
 import { Head } from "@/shared/ui/head";
 import { BRAND_NAME } from "@/shared/constants";
-import { UploadTents, Header } from './widgets';
+import { UploadTents, Header, BookingList } from './widgets';
 
 export default function Tent () {
     return (
@@ -11,8 +11,9 @@ export default function Tent () {
                 <title>Tent | {BRAND_NAME}</title>
             </Head>
             <Header />
-            <Box as="main">
+            <Box as="main" py="2">
                 <UploadTents />
+                <BookingList />
             </Box>
         </>
     );
