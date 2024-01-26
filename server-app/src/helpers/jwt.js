@@ -1,9 +1,9 @@
 const JWT = require('jsonwebtoken')
 const createError = require('http-errors')
 
-exports.signAccessToken = ({ userId }) => {
+exports.signAccessToken = ({ email }) => {
     return new Promise((resolve, reject) => {
-        const payload = { userId }
+        const payload = { email }
         const options = { expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN }
         JWT.sign(payload, process.env.ACCESS_TOKEN_SECRET, options, (error, token) => {
             if (error) {
@@ -20,8 +20,8 @@ exports.verifyAccessToken = (accessToken) => {
             if (error) {
                 return reject(createError.Unauthorized())
             }
-            const { userId } = payload
-            resolve({ userId })
+            const { email } = payload
+            resolve({ email })
         })
     })
 }
