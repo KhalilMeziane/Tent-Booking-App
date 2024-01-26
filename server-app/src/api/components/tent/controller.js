@@ -1,12 +1,12 @@
-const { readAndParseFile } = require('./service')
+const { readAndParseFile, countByBookingType } = require('./service')
 
 exports.postTents = async (req, res, next) => {
     try {
-        const data = await readAndParseFile({ filePath: req.file.path })
-        console.log('data: ', data)
-        res.status(200).json({
-            message: 'tents',
-            bookings: data
+        const bookingList = await readAndParseFile({ filePath: req.file.path })
+        const { group, individual } = countByBookingType({ bookingList })
+        res.status(201).json({
+            bookingList,
+            tents: group + Math.ceil(individual / 5)
         })
     } catch (error) {
         console.log('error: ', error)
