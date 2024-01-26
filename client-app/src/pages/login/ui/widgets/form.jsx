@@ -1,6 +1,8 @@
 import { Button } from "@chakra-ui/react"
 import * as yup from "yup"
 
+import { usePost } from '@/shared/hooks'
+
 import { Form, Input } from "@/shared/ui/form"
 
 const initialValues = { email: "", password: "" }
@@ -10,13 +12,18 @@ const validationSchema = yup.object().shape({
 })
 
 export function LoginForm () {
+    const [login, { data, loading, error }] = usePost()
 
-    const handelSubmit = async (values) => {
-        try {
-            console.log('values: ', values)
-        } catch (error) {
-            console.log('error: ', error)
-        }
+    const handelSubmit = (values) => {
+        login('/auth/login', values)
+    }
+
+    if (data) {
+        console.log('data: ', data)
+    }
+
+    if (error) {
+        console.log('error: ', error)
     }
 
     return (
@@ -43,6 +50,7 @@ export function LoginForm () {
                 size="md"
                 w="full"
                 colorScheme="blue"
+                isLoading={loading}
             >   
                 submit
             </Button>
