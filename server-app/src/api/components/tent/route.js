@@ -1,7 +1,9 @@
 const router = require('express').Router()
 
-const { tents } = require('./controller')
+const { verifyAuthorization } = require('../../middlewares/auth')
+const { upload } = require('../../../config')
+const { postTents } = require('./controller')
 
-router.get('/', tents)
+router.post('/', verifyAuthorization, upload.single('booking'), postTents)
 
 module.exports = router

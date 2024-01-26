@@ -11,4 +11,6 @@ const morganMiddleware = morgan((tokens, req, res) => {
     ].join(' ')
 })
 
-module.exports = morganMiddleware
+module.exports = {
+    morganMiddleware
+}

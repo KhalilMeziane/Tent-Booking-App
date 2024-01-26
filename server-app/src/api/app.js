@@ -5,7 +5,7 @@ const rateLimit = require('express-rate-limit')
 const createError = require('http-errors')
 const swaggerUi = require('swagger-ui-express')
 
-const morganMiddleware = require('../config/logger')
+const { morganMiddleware } = require('../config')
 const routes = require('./routes')
 const { apiDocumentation } = require('./docs/apiDoc')
 
