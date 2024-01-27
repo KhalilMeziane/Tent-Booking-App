@@ -6,7 +6,7 @@ exports.login = {
         content: {
             'application/json': {
                 schema: {
-                    $ref: '#/components/schemas/loginBody'
+                    $ref: '#/components/schemas/LoginBody'
                 }
             }
         },
@@ -19,7 +19,7 @@ exports.login = {
                 'application/json': {
                     example: {
                         message: 'login successful',
-                        access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJkOWMwYTU2OC0wMjQ3LTQ5ZDQtOTNiOC04ZGNlODNhOTk3MTkiLCJlbWFpbCI6ImtoYWxpbDQ1OUBnbWFpbC5jb20iLCJpYXQiOjE3MDMwNjA2MTYsImV4cCI6MTcwNTY1MjYxNn0.9ajhZxZudUlMh_LcwCoZ1NM__mmZMSwa6wZ20AJ-p1Q'
+                        access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvb3RAcm9vdC5jb20iLCJpYXQiOjE3MDYzNzg3NDYsImV4cCI6MTcwODk3MDc0Nn0.FPOd4_gAf6xh2GF86zy_-kJElbRE9m1AIb4heaWUQXI'
                     }
                 }
             }
@@ -60,16 +60,16 @@ exports.login = {
     }
 }
 
-exports.loginBody = {
+exports.LoginBody = {
     type: 'object',
     properties: {
         email: {
             type: 'string',
-            example: 'john.snow@email.com'
+            example: 'root@root.com'
         },
         password: {
             type: 'string',
-            example: '!1234aWe1Ro3$#'
+            example: 'root'
         }
     }
 }

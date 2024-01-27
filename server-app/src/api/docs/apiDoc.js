@@ -1,5 +1,5 @@
-const { login, loginBody } = require('./endpoints/auth')
-const { getTent } = require('./endpoints/tent')
+const { login, LoginBody } = require('./endpoints/auth')
+const { postTents, TentsBody, EmptyFile, CsvHeaders, NoFile } = require('./endpoints/tent')
 
 exports.apiDocumentation = {
     openapi: '3.0.1',
@@ -13,7 +13,7 @@ exports.apiDocumentation = {
         },
         servers: [
             {
-                url: 'http://localhost:4000/',
+                url: 'http://localhost:4000',
                 description: 'Development Server'
             }
         ],
@@ -31,12 +31,16 @@ exports.apiDocumentation = {
             post: login
         },
         '/api/tent': {
-            get: getTent
+            post: postTents
         }
     },
     components: {
         schemas: {
-            loginBody
+            LoginBody,
+            TentsBody,
+            EmptyFile,
+            CsvHeaders,
+            NoFile
         },
         securitySchemes: {
             bearerAuth: {

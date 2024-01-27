@@ -23,7 +23,6 @@ exports.postTents = async (req, res, next) => {
         })
     } catch (error) {
         return next({
-            status: error.status || 500,
             errors: error.errors,
             message: error.message
         })
