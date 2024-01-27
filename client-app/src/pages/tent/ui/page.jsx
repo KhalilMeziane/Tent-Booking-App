@@ -4,7 +4,7 @@ import { Head } from "@/shared/ui/head";
 import { BRAND_NAME } from "@/shared/constants";
 import { usePost } from "@/shared/hooks";
 import { Alert } from "@/shared/ui/alert";
-import { UploadTents, Header, BookingList } from './widgets';
+import { UploadTents, Header, BookingList, EmptyPreview } from './widgets';
 
 export default function Tent () {
     const [postBookings, { error, loading, data }] = usePost();
@@ -20,7 +20,7 @@ export default function Tent () {
                 }
                 <UploadTents postBookings={postBookings} data={data} loading={loading} error={error} />
                 {
-                    data && !loading ? <BookingList bookings={data} /> : null
+                    data && !loading ? <BookingList bookings={data} /> : <EmptyPreview />
                 }
             </Box>
         </>

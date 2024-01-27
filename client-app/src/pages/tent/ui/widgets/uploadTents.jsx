@@ -15,12 +15,18 @@ import {
 import { IoCloudUploadOutline } from "react-icons/io5";
 import Cookies from "js-cookie";
 
-export default function UploadTents({ postBookings, loading, error, data }) {
+export default function UploadTents({ postBookings, loading, data }) {
     const [file, setFile] = useState(null);
 
     const handelFile = (e) => {
         setFile(e.target.files[0]);
     };
+
+    const handleDrop = (event) => {
+        event.preventDefault();
+        setFile(event.dataTransfer.files[0]);
+    }
+
     const handelReupload = () => {
         setFile(null);
     };
@@ -53,7 +59,7 @@ export default function UploadTents({ postBookings, loading, error, data }) {
             <Flex
                 as="label"
                 htmlFor="bookings"
-                h={data && !error && !loading ? "36" : "96"}
+                h="36"
                 cursor="pointer"
                 w="100%"
                 p="4"
@@ -66,6 +72,8 @@ export default function UploadTents({ postBookings, loading, error, data }) {
                 rounded="md"
                 opacity={loading ? 0.7 : 1}
                 pointerEvents={loading ? "none" : "auto"}
+                onDrop={handleDrop}
+                onDragOver={(event) => event.preventDefault()}
             >
                 {file && !loading ? (
                     <UploadedFile
@@ -86,7 +94,7 @@ const EmptyUpload = () => {
     return (
         <VStack>
             <Icon boxSize="12" color="gray.700" as={IoCloudUploadOutline} />
-            <Text fontSize="lg">Drag and Drop your csv file here</Text>
+            <Text fontSize="md">Drag and Drop your csv file here</Text>
             <Text color="blue.500">or click to browse from your computer</Text>
         </VStack>
     );

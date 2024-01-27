@@ -17,6 +17,7 @@ import {
     Th,
     Td,
     TableContainer,
+    Flex,
 } from "@chakra-ui/react";
 import { PiTentThin } from "react-icons/pi";
 import { FiUser, FiUsers } from "react-icons/fi";
