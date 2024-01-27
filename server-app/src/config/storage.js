@@ -1,4 +1,5 @@
 const multer = require('multer')
+const createError = require('http-errors')
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -9,7 +10,15 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({ storage })
+const upload = multer({
+    storage,
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype !== 'text/csv') {
+            return cb(createError.UnsupportedMediaType('File Format Not Supported, only CSV files are supported for upload'))
+        }
+        cb(null, true)
+    }
+})
 
 module.exports = {
     upload

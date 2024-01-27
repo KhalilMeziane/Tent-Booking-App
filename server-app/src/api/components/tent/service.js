@@ -1,4 +1,4 @@
-const { createReadStream } = require('fs')
+const { createReadStream, unlinkSync } = require('fs')
 const { parse } = require('csv-parse')
 
 exports.readAndParseFile = async ({ filePath }) => {
@@ -11,9 +11,11 @@ exports.readAndParseFile = async ({ filePath }) => {
             })
             .on('end', function () {
                 resolve(parseCsv({ bookingList }))
+                unlinkSync(filePath)
             })
             .on('error', (err) => {
                 reject(err)
+                unlinkSync(filePath)
             })
     })
 }

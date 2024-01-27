@@ -1,3 +1,4 @@
+// const createError = require('http-errors')
 const { readAndParseFile, countByBookingType } = require('./service')
 
 exports.postTents = async (req, res, next) => {
@@ -10,5 +11,10 @@ exports.postTents = async (req, res, next) => {
         })
     } catch (error) {
         console.log('error: ', error)
+        return next({
+            status: error.status || 500,
+            errors: error.errors,
+            message: error.message
+        })
     }
 }
