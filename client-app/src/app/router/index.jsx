@@ -1,17 +1,29 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
+import ProtectedRoute from './protectedRoute'
+import PublicRoute from './publicRoute'
 import { Login } from "@/pages/login"
 import { Tent } from "@/pages/tent"
 import { NotFound } from "@/pages/notFound"
 
 const router = createBrowserRouter([
     {
-        path: "/",
-        element: <Login />,
+        element: <PublicRoute />,
+        children: [
+            {
+                path: "/",
+                element: <Login />,
+            }
+        ]
     },
     {
-        path: "/tents",
-        element: <Tent />,
+        element: <ProtectedRoute />,
+        children: [
+            {
+                path: "/tents",
+                element: <Tent />,
+            },
+        ]
     },
     {
         path: "*",
