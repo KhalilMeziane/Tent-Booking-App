@@ -118,7 +118,7 @@ const UploadedFile = ({ file, handelUpload, handelReupload }) => {
                     colorScheme="blue"
                     variant="outline"
                 >
-                    Reupload
+                    Reset
                 </Button>
             </HStack>
         </VStack>
