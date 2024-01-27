@@ -5,9 +5,9 @@ export default function EmptyPreview() {
     return (
         <Container maxW="4xl" py="2">
             <Flex
-                h="48"
+                h="96"
                 w="100%"
-                p="44"
+                p="4"
                 align="center"
                 justify="center"
                 bg="gray.50"

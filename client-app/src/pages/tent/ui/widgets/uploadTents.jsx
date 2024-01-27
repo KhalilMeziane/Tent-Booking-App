@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
@@ -15,7 +16,7 @@ import {
 import { IoCloudUploadOutline } from "react-icons/io5";
 import Cookies from "js-cookie";
 
-export default function UploadTents({ postBookings, loading, data }) {
+export default function UploadTents({ postBookings, loading }) {
     const [file, setFile] = useState(null);
 
     const handelFile = (e) => {
@@ -25,14 +26,13 @@ export default function UploadTents({ postBookings, loading, data }) {
     const handleDrop = (event) => {
         event.preventDefault();
         setFile(event.dataTransfer.files[0]);
-    }
+    };
 
     const handelReupload = () => {
         setFile(null);
     };
 
     const handelUpload = async () => {
-        console.log(Cookies.get("accessToken"));
         try {
             const formData = new FormData();
             formData.append("booking", file);
@@ -40,8 +40,7 @@ export default function UploadTents({ postBookings, loading, data }) {
                 "content-type": "multipart/form-data",
                 Authorization: `Bearer ${Cookies.get("accessToken")}`,
             };
-            const data = await postBookings("/tent", formData, { headers });
-            console.log("data: ", data);
+            await postBookings("/tent", formData, { headers });
         } catch (error) {
             console.log("error: ", error);
         }
@@ -78,7 +77,6 @@ export default function UploadTents({ postBookings, loading, data }) {
                 {file && !loading ? (
                     <UploadedFile
                         file={file}
-                        data={data}
                         handelUpload={handelUpload}
                         handelReupload={handelReupload}
                     />
@@ -100,17 +98,14 @@ const EmptyUpload = () => {
     );
 };
 
-const UploadedFile = ({ file, data, handelUpload, handelReupload }) => {
+const UploadedFile = ({ file, handelUpload, handelReupload }) => {
     return (
         <VStack>
             <Text>{file.name}</Text>
             <HStack>
-                {!data ? (
-                    <Button onClick={handelUpload} colorScheme="blue">
-                        Upload
-                    </Button>
-                ) : null}
-
+                <Button onClick={handelUpload} colorScheme="blue">
+                    Upload
+                </Button>
                 <Button
                     onClick={handelReupload}
                     colorScheme="blue"

@@ -18,7 +18,7 @@ export default function Tent () {
                 {
                     error ? <Alert error={error} message="There was an error processing your request" /> : null
                 }
-                <UploadTents postBookings={postBookings} data={data} loading={loading} error={error} />
+                <UploadTents postBookings={postBookings} loading={loading} error={error} />
                 {
                     data && !loading ? <BookingList bookings={data} /> : <EmptyPreview />
                 }
