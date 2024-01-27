@@ -16,7 +16,9 @@ import {
 import { IoCloudUploadOutline } from "react-icons/io5";
 import Cookies from "js-cookie";
 
-export default function UploadTents({ postBookings, loading }) {
+import { Alert } from "@/shared/ui/alert";
+
+export default function UploadTents({ postBookings, loading, error }) {
     const [file, setFile] = useState(null);
 
     const handelFile = (e) => {
@@ -48,6 +50,11 @@ export default function UploadTents({ postBookings, loading }) {
 
     return (
         <Container maxW="4xl" py="2">
+            {error ? (
+                <Alert
+                    error={error}
+                />
+            ) : null}
             <Input
                 type="file"
                 hidden

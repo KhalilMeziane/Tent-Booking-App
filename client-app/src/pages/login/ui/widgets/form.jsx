@@ -29,15 +29,17 @@ export function LoginForm() {
             });
             navigate("/tents");
         } catch (error) {
-            console.log('error: ', error)
+            console.log(error)
         }
     };
 
     return (
         <>
-            {
-                error ? <Alert error={error} message="There was an error processing your request" /> : null
-            }
+            {error ? (
+                <Alert
+                    error={error}
+                />
+            ) : null}
             <Form
                 initialValues={initialValues}
                 validationSchema={validationSchema}

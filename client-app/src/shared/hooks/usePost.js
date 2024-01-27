@@ -11,11 +11,11 @@ export default function usePost () {
         try {
             setLoading(true);
             const response = await axios.post(path, data, headers);
-            setData(response.data.data);
-            return response.data.data;
+            setData(response.data);
+            return response.data;
         } catch (error) {
-            setError(error.response);
-            throw error.response;
+            setError(error);
+            throw error;
         } finally {
             setLoading(false);
         }
