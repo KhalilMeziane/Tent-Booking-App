@@ -1,7 +1,6 @@
 /* eslint-disable array-callback-return */
 const { createReadStream, unlinkSync } = require('fs')
 const crypto = require('crypto')
-// const createError = require('http-errors')
 const { parse } = require('csv-parse')
 
 exports.readAndParseFile = async ({ filePath }) => {

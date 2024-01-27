@@ -23,24 +23,26 @@ exports.postTents = {
             content: {
                 'application/json': {
                     example: {
-                        bookingList: [
-                            {
-                                id: 'f18534',
-                                username: 'veronikaivy',
-                                bookingType: 'group'
-                            },
-                            {
-                                id: 'a5a5a1',
-                                username: 'eusebiadorn',
-                                bookingType: 'individual'
-                            },
-                            {
-                                id: '85b391',
-                                username: 'maricelaangulo',
-                                bookingType: 'individual'
-                            }
-                        ],
-                        tents: 2
+                        data: {
+                            bookingList: [
+                                {
+                                    id: 'f18534',
+                                    username: 'veronikaivy',
+                                    bookingType: 'group'
+                                },
+                                {
+                                    id: 'a5a5a1',
+                                    username: 'eusebiadorn',
+                                    bookingType: 'individual'
+                                },
+                                {
+                                    id: '85b391',
+                                    username: 'maricelaangulo',
+                                    bookingType: 'individual'
+                                }
+                            ],
+                            tents: 2
+                        }
                     }
                 }
             }

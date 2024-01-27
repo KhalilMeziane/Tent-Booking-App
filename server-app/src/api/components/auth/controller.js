@@ -40,6 +40,11 @@ exports.login = async (req, res, next) => {
                 errors
             })
         }
+
+        if (error instanceof ReferenceError || error instanceof SyntaxError || error instanceof TypeError) {
+            return next(createError.InternalServerError())
+        }
+
         return next({
             status: error.status || 500,
             errors: error.errors,
