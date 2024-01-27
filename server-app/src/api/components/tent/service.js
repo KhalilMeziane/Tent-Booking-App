@@ -32,7 +32,7 @@ exports.parseCsv = ({ rowBookingList }) => {
             username,
             bookingType
         }
-    })
+    }).filter(({ bookingType }) => bookingType === 'group' || bookingType === 'individual')
 }
 
 exports.countByBookingType = ({ bookingList }) => {
