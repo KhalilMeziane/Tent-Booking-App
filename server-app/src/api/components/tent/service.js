@@ -1,5 +1,7 @@
+/* eslint-disable array-callback-return */
 const { createReadStream, unlinkSync } = require('fs')
 const crypto = require('crypto')
+// const createError = require('http-errors')
 const { parse } = require('csv-parse')
 
 exports.readAndParseFile = async ({ filePath }) => {
@@ -8,10 +10,12 @@ exports.readAndParseFile = async ({ filePath }) => {
         createReadStream(filePath)
             .pipe(parse({ delimiter: ':' }))
             .on('data', function (row) {
-                bookingList.push(row)
+                if (row.join().trim() !== '') {
+                    bookingList.push(row)
+                }
             })
             .on('end', function () {
-                resolve(parseCsv({ bookingList }))
+                resolve(bookingList)
                 unlinkSync(filePath)
             })
             .on('error', (err) => {
@@ -20,20 +24,17 @@ exports.readAndParseFile = async ({ filePath }) => {
     })
 }
 
-const parseCsv = ({ bookingList }) => {
-    const [, ...restRows] = bookingList
-    const parsedBookingList = []
-    restRows.forEach(element => {
+exports.parseCsv = ({ rowBookingList }) => {
+    return rowBookingList.map(element => {
         if (element.join() !== '') {
             const [, username, bookingType] = element.join().trim().toLowerCase().replace(/\s+/g, '').split(',')
-            parsedBookingList.push({
+            return {
                 id: crypto.randomBytes(3).toString('hex'),
                 username,
                 bookingType
-            })
+            }
         }
     })
-    return parsedBookingList
 }
 
 exports.countByBookingType = ({ bookingList }) => {

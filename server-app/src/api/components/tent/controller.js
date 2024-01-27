@@ -1,9 +1,17 @@
-// const createError = require('http-errors')
-const { readAndParseFile, countByBookingType } = require('./service')
+const createError = require('http-errors')
+const { readAndParseFile, countByBookingType, parseCsv } = require('./service')
 
 exports.postTents = async (req, res, next) => {
     try {
-        const bookingList = await readAndParseFile({ filePath: req.file.path })
+        const [firstRow, ...bodyRows] = await readAndParseFile({ filePath: req.file.path })
+
+        const csvHeader = firstRow.join().trim().toLowerCase().replace(/\s+/g, '').split(',')
+        const hasAllHeaders = csvHeader.every(elem => ['id', 'username', 'bookingtype'].includes(elem))
+
+        if (!hasAllHeaders) {
+            return next(createError.BadRequest("The uploaded CSV file must contain headers: 'id', 'user name', and 'booking type'. Please ensure the file structure is correct."))
+        }
+        const bookingList = parseCsv({ rowBookingList: bodyRows })
         const { group, individual } = countByBookingType({ bookingList })
         res.status(201).json({
             bookingList,
