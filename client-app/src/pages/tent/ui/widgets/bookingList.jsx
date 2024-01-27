@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import {
     Box,
@@ -20,7 +21,14 @@ import {
 import { PiTentThin } from "react-icons/pi";
 import { FiUser, FiUsers } from "react-icons/fi";
 
-export default function BookingList () {
+export default function BookingList ({ bookings }) {
+    const groupedBookings = bookings.bookingList.reduce((result, { bookingType }) => {
+        result[bookingType] += 1
+        return result
+    }, {
+        group: 0,
+        individual: 0
+    })
     return (
         <Container maxW="4xl" py="2">
             <Grid
@@ -35,25 +43,25 @@ export default function BookingList () {
                     <StatsSimpleIcon
                         title="Total Tents"
                         icon={PiTentThin}
-                        count="25"
+                        count={bookings.tents}
                     />
                 </GridItem>
                 <GridItem w="100%">
                     <StatsSimpleIcon
                         title="Group Bookings"
                         icon={FiUsers}
-                        count="14"
+                        count={groupedBookings.group}
                     />
                 </GridItem>
                 <GridItem w="100%">
                     <StatsSimpleIcon
                         title="Individual Bookings"
                         icon={FiUser}
-                        count="43"
+                        count={groupedBookings.individual}
                     />
                 </GridItem>
             </Grid>
-            <BookingTable />
+            <BookingTable list={bookings.bookingList} />
         </Container>
     );
 }
@@ -91,15 +99,7 @@ const StatsSimpleIcon = ({ title, icon, count }) => {
     );
 };
 
-const mockData = [
-    { id: 1, userName: "JohnDoe", bookingType: "Individual" },
-    { id: 2, userName: "JaneSmith", bookingType: "Group" },
-    { id: 3, userName: "BobJohnson", bookingType: "Individual" },
-    { id: 4, userName: "AliceWilliams", bookingType: "Group" },
-    { id: 5, userName: "CharlieBrown", bookingType: "Individual" },
-];
-
-const BookingTable = () => {
+const BookingTable = ({ list }) => {
     return (
         <TableContainer py="4">
             <Heading as="h1" size="md">Booking List</Heading>
@@ -112,7 +112,7 @@ const BookingTable = () => {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {mockData.map(({ id, userName, bookingType }) => (
+                    {list.map(({ id, userName, bookingType }) => (
                         <TableRow
                             key={id}
                             id={id}

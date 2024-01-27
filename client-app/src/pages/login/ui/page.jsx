@@ -18,7 +18,7 @@ export default function Login () {
                 bg="gray.100"
             >
                 <VStack
-                    w={{ base: "100%", lg: "40%", xl: "30%" }}
+                    w={{ base: "100%", lg: "50%", xl: "40%" }}
                     p="5"
                     bg="white"
                     rounded="md"
