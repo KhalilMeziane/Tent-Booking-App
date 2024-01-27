@@ -26,13 +26,11 @@ exports.readAndParseFile = async ({ filePath }) => {
 
 exports.parseCsv = ({ rowBookingList }) => {
     return rowBookingList.map(element => {
-        if (element.join() !== '') {
-            const [, username, bookingType] = element.join().trim().toLowerCase().replace(/\s+/g, '').split(',')
-            return {
-                id: crypto.randomBytes(3).toString('hex'),
-                username,
-                bookingType
-            }
+        const [, username, bookingType] = element.join().trim().toLowerCase().replace(/\s+/g, '').split(',')
+        return {
+            id: crypto.randomBytes(3).toString('hex'),
+            username,
+            bookingType
         }
     })
 }
