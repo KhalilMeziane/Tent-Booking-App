@@ -27,6 +27,9 @@ export default function UploadTents({ postBookings, loading, error }) {
 
     const handleDrop = (event) => {
         event.preventDefault();
+        if (!event.dataTransfer.files[0].name.match(/\.(csv)$/)){
+            return false;
+        }
         setFile(event.dataTransfer.files[0]);
     };
 
