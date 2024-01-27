@@ -3,7 +3,11 @@ const { readAndParseFile, countByBookingType, parseCsv } = require('./service')
 
 exports.postTents = async (req, res, next) => {
     try {
-        const [firstRow, ...bodyRows] = await readAndParseFile({ filePath: req.file.path })
+        const csvRows = await readAndParseFile({ filePath: req.file.path })
+        if (csvRows.length === 0) {
+            return next(createError.BadRequest('The uploaded CSV file must not be empty'))
+        }
+        const [firstRow, ...bodyRows] = csvRows
 
         const csvHeader = firstRow.join().trim().toLowerCase().replace(/\s+/g, '').split(',')
         const hasAllHeaders = csvHeader.every(elem => ['id', 'username', 'bookingtype'].includes(elem))
