@@ -68,45 +68,49 @@ export default function UploadTents({ postBookings, loading, error, data }) {
                 pointerEvents={loading ? "none" : "auto"}
             >
                 {file && !loading ? (
-                    <VStack>
-                        <Text>{file.name}</Text>
-                        <HStack>
-                            {!data ? (
-                                <Button
-                                    onClick={handelUpload}
-                                    colorScheme="blue"
-                                >
-                                    Upload
-                                </Button>
-                            ) : null}
-
-                            <Button
-                                onClick={handelReupload}
-                                colorScheme="blue"
-                                variant="outline"
-                            >
-                                Reupload
-                            </Button>
-                        </HStack>
-                    </VStack>
+                    <UploadedFile
+                        file={file}
+                        data={data}
+                        handelUpload={handelUpload}
+                        handelReupload={handelReupload}
+                    />
                 ) : null}
-                {!file ? (
-                    <VStack>
-                        <Icon
-                            boxSize="12"
-                            color="gray.700"
-                            as={IoCloudUploadOutline}
-                        />
-                        <Text fontSize="lg">
-                            Drag and Drop your csv file here
-                        </Text>
-                        <Text color="blue.500">
-                            or click to browse from your computer
-                        </Text>
-                    </VStack>
-                ) : null}
+                {!file ? <EmptyUpload /> : null}
                 {loading && file ? <Spinner color="blue" size="lg" /> : null}
             </Flex>
         </Container>
     );
 }
+
+const EmptyUpload = () => {
+    return (
+        <VStack>
+            <Icon boxSize="12" color="gray.700" as={IoCloudUploadOutline} />
+            <Text fontSize="lg">Drag and Drop your csv file here</Text>
+            <Text color="blue.500">or click to browse from your computer</Text>
+        </VStack>
+    );
+};
+
+const UploadedFile = ({ file, data, handelUpload, handelReupload }) => {
+    return (
+        <VStack>
+            <Text>{file.name}</Text>
+            <HStack>
+                {!data ? (
+                    <Button onClick={handelUpload} colorScheme="blue">
+                        Upload
+                    </Button>
+                ) : null}
+
+                <Button
+                    onClick={handelReupload}
+                    colorScheme="blue"
+                    variant="outline"
+                >
+                    Reupload
+                </Button>
+            </HStack>
+        </VStack>
+    );
+};
