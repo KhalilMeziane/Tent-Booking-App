@@ -22,14 +22,17 @@ import {
 import { PiTentThin } from "react-icons/pi";
 import { FiUser, FiUsers } from "react-icons/fi";
 
-export default function BookingList ({ bookings }) {
-    const groupedBookings = bookings.bookingList.reduce((result, { bookingType }) => {
-        result[bookingType] += 1
-        return result
-    }, {
-        group: 0,
-        individual: 0
-    })
+export default function BookingList({ bookings }) {
+    const groupedBookings = bookings.bookingList.reduce(
+        (result, { bookingType }) => {
+            result[bookingType] += 1;
+            return result;
+        },
+        {
+            group: 0,
+            individual: 0,
+        }
+    );
     return (
         <Container maxW="4xl" py="2">
             <Grid
@@ -103,26 +106,34 @@ const StatsSimpleIcon = ({ title, icon, count }) => {
 const BookingTable = ({ list }) => {
     return (
         <TableContainer py="4">
-            <Heading as="h1" size="md">Booking List</Heading>
-            <Table variant="striped" colorScheme="gray">
-                <Thead>
-                    <Tr>
-                        <Th>id</Th>
-                        <Th>user name</Th>
-                        <Th>booking type</Th>
-                    </Tr>
-                </Thead>
-                <Tbody>
-                    {list.map(({ id, userName, bookingType }) => (
-                        <TableRow
-                            key={id}
-                            id={id}
-                            userName={userName}
-                            bookingType={bookingType}
-                        />
-                    ))}
-                </Tbody>
-            </Table>
+            <Heading as="h1" size="md">
+                Booking List
+            </Heading>
+            {!list.length ? (
+                <Text w="100%" fontSize="lg" bg="gray.50" rounded="md" py="4" my="2" textAlign="center">
+                    Empty Bookings List
+                </Text>
+            ) : (
+                <Table variant="striped" colorScheme="gray">
+                    <Thead>
+                        <Tr>
+                            <Th>id</Th>
+                            <Th>user name</Th>
+                            <Th>booking type</Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        {list.map(({ id, userName, bookingType }) => (
+                            <TableRow
+                                key={id}
+                                id={id}
+                                userName={userName}
+                                bookingType={bookingType}
+                            />
+                        ))}
+                    </Tbody>
+                </Table>
+            )}
         </TableContainer>
     );
 };

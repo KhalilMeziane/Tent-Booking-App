@@ -11,8 +11,8 @@ export default function usePost () {
         try {
             setLoading(true);
             const response = await axios.post(path, data, headers);
-            setData(response.data);
-            return response.data;
+            setData(response.data.data);
+            return response.data.data;
         } catch (error) {
             setError(error.response);
             throw error.response;
