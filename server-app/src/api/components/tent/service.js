@@ -1,4 +1,5 @@
 const { createReadStream, unlinkSync } = require('fs')
+const crypto = require('crypto')
 const { parse } = require('csv-parse')
 
 exports.readAndParseFile = async ({ filePath }) => {
@@ -15,7 +16,6 @@ exports.readAndParseFile = async ({ filePath }) => {
             })
             .on('error', (err) => {
                 reject(err)
-                unlinkSync(filePath)
             })
     })
 }
@@ -25,17 +25,15 @@ const parseCsv = ({ bookingList }) => {
     const parsedBookingList = []
     restRows.forEach(element => {
         if (element.join() !== '') {
-            const val = element.join().trim().toLowerCase().replace(/\s+/g, '').split(',')
-            parsedBookingList.push(new Booking(...val))
+            const [, username, bookingType] = element.join().trim().toLowerCase().replace(/\s+/g, '').split(',')
+            parsedBookingList.push({
+                id: crypto.randomBytes(3).toString('hex'),
+                username,
+                bookingType
+            })
         }
     })
     return parsedBookingList
-}
-
-function Booking (id, username, type) {
-    this.id = id
-    this.userName = username
-    this.bookingType = type
 }
 
 exports.countByBookingType = ({ bookingList }) => {
