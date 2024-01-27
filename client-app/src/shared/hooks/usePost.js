@@ -12,13 +12,14 @@ export default function usePost () {
             setLoading(true);
             const response = await axios.post(path, data);
             setData(response.data);
+            return response.data;
         } catch (error) {
-            setError(error);
+            setError(error.response);
+            throw error.response;
         } finally {
             setLoading(false);
         }
     }, [])
     
-
     return [handelPost, { data, error, loading }];
 }
