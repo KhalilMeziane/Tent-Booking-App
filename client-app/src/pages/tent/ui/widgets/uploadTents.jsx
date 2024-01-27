@@ -22,6 +22,9 @@ export default function UploadTents({ postBookings, loading, error }) {
     const [file, setFile] = useState(null);
 
     const handelFile = (e) => {
+        if (!e.target.files[0].name.match(/\.(csv)$/)){
+            return false;
+        }
         setFile(e.target.files[0]);
     };
 

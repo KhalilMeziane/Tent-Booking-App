@@ -16,7 +16,7 @@ export default function Tent () {
             <Box as="main" py="2">
                 <UploadTents postBookings={postBookings} loading={loading} error={error} />
                 {
-                    data && !loading ? <BookingList bookings={data.data} /> : <EmptyPreview />
+                    !loading && !error && data ? <BookingList bookings={data.data} /> : <EmptyPreview />
                 }
             </Box>
         </>
