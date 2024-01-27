@@ -3,7 +3,7 @@ const createError = require('http-errors')
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/')
+        cb(null, 'public/tmp/')
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + '-' + file.originalname)

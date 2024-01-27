@@ -3,6 +3,10 @@ const { readAndParseFile, countByBookingType, parseCsv } = require('./service')
 
 exports.postTents = async (req, res, next) => {
     try {
+        if (!req.file) {
+            return next(createError.BadRequest('No file was uploaded. Please ensure you include a CSV file in your request'))
+        }
+
         const csvRows = await readAndParseFile({ filePath: req.file.path })
         if (csvRows.length === 0) {
             return next(createError.BadRequest('The uploaded CSV file is empty. Please ensure the file contains data'))
