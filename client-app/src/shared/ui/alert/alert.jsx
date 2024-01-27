@@ -2,7 +2,6 @@
 import { Alert as Al, AlertIcon } from "@chakra-ui/react";
 
 export default function Alert({ error, status = "error" }) {
-    console.log("error: ", error);
     let message = "";
     if (error.code === "ECONNABORTED") {
         message = "Request timed out. Please try again later.";

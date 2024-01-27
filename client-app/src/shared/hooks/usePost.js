@@ -9,6 +9,8 @@ export default function usePost () {
 
     const handelPost = useCallback( async (path, data, headers) => {
         try {
+            setData(() => null)
+            setError(() => null)
             setLoading(true);
             const response = await axios.post(path, data, headers);
             setData(response.data);
