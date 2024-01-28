@@ -22,13 +22,9 @@ Here is a list of the technology stack for a server-app:
 ### client-app
 ```
 └── 📁client-app
-    └── .eslintrc.cjs
-    └── .gitignore
     └── index.html
-    └── package-lock.json
     └── package.json
     └── 📁public
-        └── vite.svg
     └── README.md
     └── 📁src
         └── 📁app
@@ -49,7 +45,6 @@ Here is a list of the technology stack for a server-app:
                 └── 📁ui
                     └── page.jsx
                     └── 📁widgets
-                        └── form.jsx
             └── 📁notFound
                 └── index.js
                 └── 📁ui
@@ -59,48 +54,30 @@ Here is a list of the technology stack for a server-app:
                 └── 📁ui
                     └── page.jsx
                     └── 📁widgets
-                        └── bookingList.jsx
-                        └── emptyPreview.jsx
-                        └── header.jsx
-                        └── index.js
-                        └── uploadTents.jsx
         └── 📁shared
             └── 📁api
-                └── axios.js
-                └── index.js
             └── constants.js
             └── 📁hooks
-                └── index.js
-                └── usePost.js
             └── 📁ui
-                └── 📁alert
-                    └── alert.jsx
-                    └── index.js
-                └── 📁form
-                    └── 📁fields
-                        └── input.jsx
-                    └── form.jsx
-                    └── index.js
-                └── 📁head
-                    └── head.jsx
-                    └── index.js
     └── vite.config.js
 ```
 
 ### server-app
 ```
 └── 📁server-app
-    └── .env.common
-    └── .env.local
-    └── .env.prod
+    └── .dockerignore
+    └── .env
     └── .eslintrc.json
     └── .gitignore
+    └── docker-compose.dev.yaml
+    └── docker-compose.prod.yaml
+    └── docker-compose.yaml
+    └── Dockerfile
     └── package-lock.json
     └── package.json
     └── 📁public
         └── 📁tmp
             └── .gitkeep
-            └── 1706388528245-bokkings2.csv
     └── 📁src
         └── 📁api
             └── app.js
@@ -133,7 +110,6 @@ Here is a list of the technology stack for a server-app:
         └── 📁utils
             └── index.js
             └── parseValidationErrors.js
-    └── todo.txt
 ```
 
 ## Requirement
@@ -158,27 +134,28 @@ From your command line, first clone the repository into your local machine:
     $ git clone https://github.com/MezianeKhalil/Tent-Booking-App
     # Go to the project directory
     $ cd Tent-Booking-App
-    # Go to the server-app
+```
+
+Second run server application using docker:
+```bash
+    # Go to the server-app folder
     $ cd server-app
-    # Then install dependencies of server-app
-    $ npm install
-    # Then go back to root project
-    # And go to the client-app
+    # run app container in development mode
+    $ docker-compose -f .\docker-compose.yaml -f .\docker-compose.dev.yaml up -d
+    # Or run app container in production mode
+    $ docker-compose -f .\docker-compose.yaml -f .\docker-compose.prod.yaml up -d
+```
+> When updating application's codebase and deploying changes and running server application for Production environment to ensure that the new changes are built and deployed correctly use following command:
+```bash
+    $ docker-compose -f .\docker-compose.yaml -f .\docker-compose.prod.yaml up -d --build
+```
+
+Third run client application:
+```bash
+    # go to the client-app
     $ cd client-app
     # Then install dependencies of client-app
     $ npm install
-```
-Next step is run apps
-
-```bash
-    # Go to the server-app
-    $ cd server-app
-    # Then run app in dev mode
-    $ npm run start:dev
-    # to run app in production mode
-    $ npm run start:prod
-    # Then in new terminal tab go to the client-app
-    $ cd client-app
     # run client-app
     $ npm run dev
 ```
