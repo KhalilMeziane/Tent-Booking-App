@@ -33,7 +33,6 @@ describe('Tent Module', () => {
             .post('/api/tent')
             .set('Authorization', `Bearer ${token}`)
             .attach('booking', resolve(__dirname, './mock/invalidHeaderBookings.csv'))
-            .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(400)
             .then((res) => {
@@ -46,7 +45,6 @@ describe('Tent Module', () => {
             .post('/api/tent')
             .set('Authorization', `Bearer ${token}`)
             .attach('booking', resolve(__dirname, './mock/emptyBookings.csv'))
-            .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(400)
             .then((res) => {
@@ -59,7 +57,6 @@ describe('Tent Module', () => {
             .post('/api/tent')
             .set('Authorization', `Bearer ${token}`)
             .attach('booking', resolve(__dirname, './mock/message.txt'))
-            .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(415)
             .then((res) => {
