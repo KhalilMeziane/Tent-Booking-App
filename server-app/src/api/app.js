@@ -11,8 +11,6 @@ const { apiDocumentation } = require('./docs/apiDoc')
 
 const app = express()
 
-require('dotenv').config()
-
 const apiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 500,

@@ -1,0 +1,8 @@
+version: "3"
+services:
+  server-app:
+    container_name: server-app-container
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./.env

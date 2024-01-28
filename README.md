@@ -142,15 +142,11 @@ Here is a list of the technology stack for a server-app:
 
 ## Environment Variables for server-app
 ```bash
-    # Common env:
     $ ROOT_EMAIL
     $ ROOT_PASSWORD 
     $ ACCESS_TOKEN_SECRET
     $ ACCESS_TOKEN_EXPIRES_IN
-    # Dev env:
-    $ PORT = 4000
-    # Prod env: 
-    PORT = 8080
+    $ PORT
 ```
 
 ## Project Structure
