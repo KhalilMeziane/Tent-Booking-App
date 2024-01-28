@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 const request = require('supertest')
 
-describe('POST /api/auth/login', () => {
+describe('Auth Module', () => {
     it('should return login successful', async () => {
         return request('http://localhost:4000')
             .post('/api/auth/login')
