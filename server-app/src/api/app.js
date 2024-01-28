@@ -39,9 +39,7 @@ app.get('/health', (req, res) => {
     })
 })
 
-if (process.env.Node_ENV !== 'production') {
-    app.use('/api/documentation', swaggerUi.serve, swaggerUi.setup(apiDocumentation))
-}
+app.use('/api/documentation', swaggerUi.serve, swaggerUi.setup(apiDocumentation))
 
 app.use('/api', routes)
 

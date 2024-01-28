@@ -140,6 +140,19 @@ Here is a list of the technology stack for a server-app:
 - [node](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
 
+## Environment Variables for server-app
+```bash
+    # Common env:
+    $ ROOT_EMAIL
+    $ ROOT_PASSWORD 
+    $ ACCESS_TOKEN_SECRET
+    $ ACCESS_TOKEN_EXPIRES_IN
+    # Dev env:
+    $ PORT = 4000
+    # Prod env: 
+    PORT = 8080
+```
+
 ## Project Structure
 
 ## How To Use
@@ -173,3 +186,18 @@ Next step is run apps
     # run client-app
     $ npm run dev
 ```
+
+# API Documentation
+
+API documentation is available through Swagger UI, providing interactive documentation for exploring and testing our endpoints.
+
+To access the API documentation:
+
+1. **Development Environment:**
+   - Visit [Swagger UI](http://localhost:4000/api/documentation).
+
+2. **Production Environment:**
+   - Visit [Swagger UI](https://tents.com/api/documentation).
+
+3. **Authentication:**
+   - If your API requires authentication, make sure to authenticate using the appropriate credentials before accessing the endpoints.
