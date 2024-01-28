@@ -12,11 +12,11 @@ Tent-Booking-App is full-stack application with a secure JWT login page, CSV fil
 
 ### Technology Stack for backend-app
 Here is a list of the technology stack for a server-app:
-- JavaScript: JavaScript is a programming language that is widely used for building web applications. It is the primary language used for writing the backend logic in an Express.js application.
-- Node.js: Node.js is a JavaScript runtime environment that allows developers to run JavaScript on the server-side. It provides a number of built-in modules that can be used to build web applications.
-- Express.js: Express.js is a lightweight and flexible Node.js web application framework. It provides a simple interface for building web applications and APIs.
-- RESTful APIs: Express.js is commonly used to build RESTful APIs. REST stands for Representational State Transfer, which is an architectural style for building web services.
-- JWT: JWT (JSON Web Token) is a compact and self-contained mechanism for securely transmitting information between parties as a JSON object. It is commonly used for authentication and authorization in web applications.
+- JavaScript - The programming language used for building the app.
+- Node.js: Node.js is a JavaScript runtime environment that allows developers to run JavaScript on the server-side.
+- Express.js: Express.js is a lightweight and flexible Node.js web application framework.
+- RESTful APIs: REST stands for Representational State Transfer, which is an architectural style for building web services.
+- JWT: is a compact URL-safe means of representing claims to be transferred between two parties.
 
 ## Folder structure
 ### client-app
@@ -169,8 +169,5 @@ To access the API documentation:
 1. **Development Environment:**
    - Visit [Swagger UI](http://localhost:4000/api/documentation).
 
-2. **Production Environment:**
-   - Visit [Swagger UI](https://tents.com/api/documentation).
-
-3. **Authentication:**
+2. **Authentication:**
    - If your API requires authentication, make sure to authenticate using the appropriate credentials before accessing the endpoints.
