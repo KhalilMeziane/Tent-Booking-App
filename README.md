@@ -160,7 +160,7 @@ Third run client application:
     $ npm run dev
 ```
 
-# API Documentation
+## API Documentation
 
 API documentation is available through Swagger UI, providing interactive documentation for exploring and testing our endpoints.
 
@@ -174,3 +174,9 @@ To access the API documentation:
 
 3. **Authentication:**
    - If your API requires authentication, make sure to authenticate using the appropriate credentials before accessing the endpoints.
+
+## User Access Credentials
+```
+    email = "root@root.com"
+    password = "root" 
+```
