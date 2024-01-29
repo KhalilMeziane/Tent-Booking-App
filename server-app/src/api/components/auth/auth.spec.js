@@ -14,6 +14,9 @@ describe('Auth Module', () => {
             .expect(200)
             .then((res) => {
                 expect(res.statusCode).toBe(200)
+                expect(res._body).toHaveProperty('message')
+                expect(res._body.message).toBe('login successful')
+                expect(res._body).toHaveProperty('accessToken')
             })
     })
 
@@ -29,6 +32,9 @@ describe('Auth Module', () => {
             .expect(400)
             .then((res) => {
                 expect(res.statusCode).toBe(400)
+                expect(res._body).toHaveProperty('error')
+                expect(res._body.error).toHaveProperty('message')
+                expect(res._body.error.message).toBe('Invalid Credentials')
             })
     })
 
@@ -44,6 +50,14 @@ describe('Auth Module', () => {
             .expect(400)
             .then((res) => {
                 expect(res.statusCode).toBe(400)
+                expect(res._body).toHaveProperty('error')
+                expect(res._body.error).toHaveProperty('message')
+                expect(res._body.error.message).toBe('Input validation failed')
+                expect(res._body.error).toHaveProperty('errors')
+                expect(res._body.error.errors).toHaveProperty('password')
+                expect(res._body.error.errors.password).toBe('password field is required')
+                expect(res._body.error.errors).toHaveProperty('email')
+                expect(res._body.error.errors.email).toBe('email field is required')
             })
     })
 
