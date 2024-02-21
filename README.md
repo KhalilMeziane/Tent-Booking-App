@@ -1,5 +1,12 @@
 # Tent-Booking-App
 
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Technical Details](#technical-details)
+3. [Installation](#installation)
+4. [API Documentation](#api-documentation)
+5. [User Access Credentials](#user-access-credentials)
+
 ## Introduction
 Tent-Booking-App is full-stack application with a secure JWT login page, CSV file upload for tent bookings, and logic to distribute individual and group bookings to tents. Store bookings with unique tent IDs and calculate the number of tents needed for all sample file bookings.
 
@@ -18,116 +25,7 @@ Here is a list of the technology stack for a server-app:
 - RESTful APIs: REST stands for Representational State Transfer, which is an architectural style for building web services.
 - JWT: is a compact URL-safe means of representing claims to be transferred between two parties.
 
-## Folder structure
-### client-app
-```
-└── 📁client-app
-    └── index.html
-    └── package.json
-    └── 📁public
-    └── README.md
-    └── 📁src
-        └── 📁app
-            └── App.jsx
-            └── 📁providers
-                └── index.js
-                └── withHelmet.jsx
-                └── withRouter.jsx
-                └── withUi.jsx
-            └── 📁router
-                └── index.jsx
-                └── protectedRoute.jsx
-                └── publicRoute.jsx
-        └── main.jsx
-        └── 📁pages
-            └── 📁login
-                └── index.js
-                └── 📁ui
-                    └── page.jsx
-                    └── 📁widgets
-            └── 📁notFound
-                └── index.js
-                └── 📁ui
-                    └── page.jsx
-            └── 📁tent
-                └── index.js
-                └── 📁ui
-                    └── page.jsx
-                    └── 📁widgets
-        └── 📁shared
-            └── 📁api
-            └── constants.js
-            └── 📁hooks
-            └── 📁ui
-    └── vite.config.js
-```
-
-### server-app
-```
-└── 📁server-app
-    └── .dockerignore
-    └── .env
-    └── .eslintrc.json
-    └── .gitignore
-    └── docker-compose.dev.yaml
-    └── docker-compose.prod.yaml
-    └── docker-compose.yaml
-    └── Dockerfile
-    └── package-lock.json
-    └── package.json
-    └── 📁public
-        └── 📁tmp
-            └── .gitkeep
-    └── 📁src
-        └── 📁api
-            └── app.js
-            └── 📁components
-                └── 📁auth
-                    └── controller.js
-                    └── route.js
-                    └── service.js
-                └── 📁tent
-                    └── controller.js
-                    └── route.js
-                    └── service.js
-            └── 📁docs
-                └── apiDoc.js
-                └── 📁endpoints
-                    └── auth.js
-                    └── tent.js
-            └── 📁middlewares
-                └── auth.js
-            └── routes.js
-        └── 📁config
-            └── index.js
-            └── logger.js
-            └── storage.js
-        └── 📁helpers
-            └── hash.js
-            └── index.js
-            └── jwt.js
-        └── main.js
-        └── 📁utils
-            └── index.js
-            └── parseValidationErrors.js
-```
-
-## Requirement
-- [node](https://nodejs.org/)
-- [npm](https://www.npmjs.com/)
-
-## Environment Variables for server-app
-```bash
-    $ ROOT_EMAIL
-    $ ROOT_PASSWORD 
-    $ ACCESS_TOKEN_SECRET
-    $ ACCESS_TOKEN_EXPIRES_IN
-    $ PORT
-```
-
-## Project Structure
-
-## How To Use
+## Installation
 From your command line, first clone the repository into your local machine:
 ```bash
     # Clone this repository
